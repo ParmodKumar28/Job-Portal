@@ -26,6 +26,24 @@
       at <span class="text-primary">Coding Ninjas</span>
     </h1>
     <!-- Job Role Ends Here -->
+
+    <!-- Recruiter Functions -->
+    <% if(locals.userEmail) { %>
+    <div class="d-flex m-2">
+      <button type="button" class="btn btn-warning ms-2">
+        Actively Hiring <i class="fa-solid fa-chart-line i-color ms-1"></i>
+      </button>
+      <span class="fs-5">
+        <a href="/update-job"
+          ><i class="fa-solid fa-file-pen fa-lg text-primary ms-4"></i
+        ></a>
+        <a href="/delete-job">
+          <i class="fa-solid fa-trash-can fa-lg text-danger ms-2"></i></a
+      ></span>
+    </div>
+    <% } %>
+    <!--  -->
+
     <div class="card-body">
       <!-- Company And Job Type -->
       <h3 class="fw-light fs-4">Coding Ninjas</h3>

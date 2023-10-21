@@ -3,13 +3,14 @@
     <div class="login-container">
       <div class="card login-card">
         <h5 class="card-title login-heading">Login</h5>
-        <form>
+        <form action="/login" method="post">
           <div class="mb-3">
             <label for="email" class="form-label custom-label">Email</label>
             <input
               type="email"
               class="form-control"
               id="email"
+              name="email"
               placeholder="enter the email"
               required
             />
@@ -22,6 +23,7 @@
               type="password"
               class="form-control"
               id="password"
+              name="password"
               placeholder="enter the password"
               required
             />
