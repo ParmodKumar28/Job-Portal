@@ -1,0 +1,168 @@
+<!-- Home Page -->
+<div class="container-lpage">
+  <div
+    class="container-fluid main d-flex align-items-center justify-content-center bg-color-home flex-wrap-reverse"
+  >
+    <div class="left m-2 p-2 pt-5">
+      <h1 class="main-heading mb-4">A comprehensive platform for reliable</h1>
+      <h2 class="white-text mb-4 h2-animation">
+        job opportunities and internships.
+      </h2>
+      <h5 class="white-text mb-3">Get Discovered. Get Hired.</h5>
+      <span>
+        <a href="/jobs"
+          ><button type="button" class="btn btn-primary btn-lg">
+            i'm a job seeker
+          </button></a
+        >
+        <button
+          type="button"
+          class="btn btn-primary btn-lg m-2"
+          data-bs-toggle="modal"
+          data-bs-target="#register-modal"
+        >
+          i'm a job recruiter
+        </button>
+      </span>
+    </div>
+
+    <div class="right">
+      <img class="logo" src="/assets/logo.png" alt="Image" />
+    </div>
+  </div>
+  <!--  -->
+
+  <!-- Register Modal Code -->
+  <div class="modal fade" id="register-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Experience easily</h2>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!--  -->
+          <form action="/register" method="post">
+            <div class="form-group mb-2">
+              <label for="register-name">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="register-name"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+            <div class="form-group mb-2">
+              <label for="register-email">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="register-email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="form-group mb-2">
+              <label for="register-password">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="register-password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary btn-block mt-4 custom-button"
+            >
+              Register
+            </button>
+          </form>
+          <!-- -->
+        </div>
+        <div class="modal-footer d-flex justify-content-between">
+          <h6>
+            Already registered?
+            <button
+              type="button"
+              class="btn btn-outline-success ml-2"
+              data-bs-toggle="modal"
+              data-bs-target="#login-modal"
+            >
+              login
+            </button>
+          </h6>
+          <div id="social-icons">
+            <i class="fa-brands fa-twitter twitter fs-4"></i>
+            <i class="fa-brands fa-instagram instagram fs-4"></i>
+            <i class="fa-brands fa-facebook facebook fs-4"></i>
+            <i class="fa-brands fa-whatsapp whatsapp fs-4"></i>
+            <i class="fa-brands fa-linkedin linkedin fs-4"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Register Modal Code -->
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="login-modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-success">Experience easily!</h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="login-email" class="form-label custom-label"
+                >Email</label
+              >
+              <input
+                type="login-email"
+                class="form-control"
+                id="login-email"
+                placeholder="enter the email"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="login-password" class="form-label custom-label"
+                >Password</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                id="login-password"
+                placeholder="enter the password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary custom-button">
+              Login
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Login Modal Ends Here -->
+</div>
