@@ -16,7 +16,7 @@
             <form>
               <div class="form-group">
                 <select class="form-control mb-3" id="jobCategory">
-                <option selected disabled class="bg-secondary">select job category</option>
+                <option selected disabled>select job category</option>
                   <option value="Tech">Tech</option>
                   <option value="Non-Tech">Non-Tech</option>
                   <!-- Add more options as needed -->
@@ -25,7 +25,7 @@
 
               <div class="form-group mb-3">
                 <select class="form-control" id="jobDesignation">
-                <option selected disabled class="bg-secondary">select job designation</option>
+                <option selected disabled>select job designation</option>
                   <option value="HR">HR</option>
                   <option value="SDE">SDE</option>
                   <option value="DevOps">DevOps</option>
@@ -76,7 +76,7 @@
 
               <div class="form-group mb-3">
                 <label for="applyBy">Apply By</label>
-                <input type="text" class="form-control" id="applyBy" placeholder="mm/dd/yyyy">
+                <input type="date" class="form-control" id="applyBy">
               </div>
 
               <button type="submit mb-3" class="btn btn-success btn-block w-100">Post Job</button>
