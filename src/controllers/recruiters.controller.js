@@ -1,5 +1,6 @@
 // Recruiters Model Imported Here
 import RecruiterModel from "../models/recruiters.model.js";
+import JobsModel from "../models/jobs.model.js";
 
 export default class RecruiterController{
     getRegister(req,res){
@@ -41,7 +42,8 @@ export default class RecruiterController{
         // Creating Sessions Variables Here
         req.session.userEmail = email;
         req.session.userName = RecruiterModel.getName(email);
-        res.render('jobs', {userEmail : req.session.userEmail, userName : req.session.userName,});
+        const allJobs = JobsModel.getAllJobs();
+        res.render('jobs', {allJobs,userEmail : req.session.userEmail, userName : req.session.userName,});
 
         // Redirecting to the jobs page after login
         // res.redirect('/jobs');
@@ -57,12 +59,6 @@ export default class RecruiterController{
                 res.redirect('/login');
             }
         });
-    }
-
-
-    getPostJob(req,res){
-        // res.render('404page');
-        res.render('post-new-job', {userEmail : req.session.userEmail, userName : req.session.userName,})
     }
 
     getApplicants(req,res){

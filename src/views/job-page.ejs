@@ -22,8 +22,9 @@
 
     <!-- Job Role -->
     <h1 class="text-center mt-3 text-success fw-light">
-      <span class="text-danger">SDE</span> oppertunity in GURGAON HR IND REMOTE
-      at <span class="text-primary">Coding Ninjas</span>
+      <span class="text-danger"> <%= job.designation %> </span> oppertunity in
+      <%=job.location %> at
+      <span class="text-primary"> <%= job.company %></span>
     </h1>
     <!-- Job Role Ends Here -->
 
@@ -34,10 +35,10 @@
         Actively Hiring <i class="fa-solid fa-chart-line i-color ms-1"></i>
       </button>
       <span class="fs-5">
-        <a href="/update-job"
+        <a href="/updateJob/<%= job.id %>"
           ><i class="fa-solid fa-file-pen fa-lg text-primary ms-4"></i
         ></a>
-        <a href="/delete-job">
+        <a href="/deletejob/<%= job.id %>">
           <i class="fa-solid fa-trash-can fa-lg text-danger ms-2"></i></a
       ></span>
     </div>
@@ -46,18 +47,28 @@
 
     <div class="card-body">
       <!-- Company And Job Type -->
-      <h3 class="fw-light fs-4">Coding Ninjas</h3>
-      <h4 class="fw-light fs-5">Tech <span class="text-success">SDE</span></h4>
+      <h3 class="fw-light fs-4"><%= job.company %></h3>
+      <h4 class="fw-light fs-5">
+        <%= job.category %>
+        <span class="text-success"> <%= job.designation %></span>
+      </h4>
       <!-- Company And Job Type Ends Here -->
 
       <!-- Job Details -->
       <div class="job details d-flex flex-column m-3 mt-2">
-        <span><i class="fa-solid fa-map-pin"></i> Gurgaon HR IND Remote</span>
-        <span><i class="fa-solid fa-indian-rupee-sign"></i> 14-20lpa</span>
+        <span><i class="fa-solid fa-map-pin"></i> <%= job.location %></span>
         <span
-          ><i class="fa-solid fa-hourglass-half"></i> Apply By 30 Aug 2023</span
+          ><i class="fa-solid fa-indian-rupee-sign"></i> <%= job.salary %>
+          lpa</span
         >
-        <span><i class="fa-solid fa-signal"></i> Number of openings 5</span>
+        <span
+          ><i class="fa-solid fa-hourglass-half"></i> Apply By <%= job.date
+          %></span
+        >
+        <span
+          ><i class="fa-solid fa-signal"></i> Number of openings <%=
+          job.openings %></span
+        >
         <span class="text-danger"
           ><i class="fa-solid fa-user-group"></i
           ><a class="text-decoration-none text-danger" href="/applicants">
@@ -67,142 +78,144 @@
       </div>
 
       <!-- Skills And Apply -->
-      <div>
-        <div id="skills m-3">
-          <button type="button" class="btn btn-outline-info mb-2">REACT</button>
-          <button type="button" class="btn btn-outline-info mb-2">
-            NODEJS
-          </button>
-          <button type="button" class="btn btn-outline-info mb-2">JS</button>
-          <button type="button" class="btn btn-outline-info mb-2">SQL</button>
-          <button type="button" class="btn btn-outline-info mb-2">
-            MONGODB
-          </button>
-          <button type="button" class="btn btn-outline-info mb-2">
-            EXPRESS
-          </button>
-          <button type="button" class="btn btn-outline-info mb-2">AWS</button>
-        </div>
+      <!-- Skills -->
+      <div id="skills" class="d-flex flex-wrap m-1">
+        <% if (Array.isArray(job.skills)) {
+        job.skills.forEach((skill) => { %>
+        <button type="button" class="btn btn-outline-info mb-2 me-2">
+        <%= skill %>
+      </button>
+    <% });
+  } else { %>
+    <button type="button" class="btn btn-outline-info mb-2 me-2">
+      <%= job.skills %>
+    </button>
+  <% } %>
+</div>
+<!--  -->
+      
+        <!-- Apply Now -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#apply-now-modal"
+        >
+          Apply Now
+        </button>
       </div>
-      <!-- Apply Now -->
-      <button
-        type="button"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#apply-now-modal"
-      >
-        Apply Now
-      </button>
-    </div>
-    <!-- Posted Button -->
-    <div class="m-3">
-      <button type="button" class="btn btn-success">
-        Posted: 10/19/2023, 6:17:43 PM
-      </button>
+      <!-- Posted Button -->
+      <div class="m-3">
+        <button type="button" class="btn btn-success">
+          <%= job.postedTime %>
+        </button>
+      </div>
+      <!--  -->
     </div>
     <!--  -->
-  </div>
-  <!--  -->
 
-  <!-- Apply Now -->
+    <!-- Apply Now -->
 
-  <!-- Modal -->
-  <div
-    class="modal fade"
-    id="apply-now-modal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">
-            easily
-          </h1>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body p-5">
-          <!-- Apply Form Card Starts Here -->
-          <div class="card m-2 jobcard">
-            <div class="card-body">
-              <!-- Form -->
-              <form>
-                <h3 class="fw-light pb-1">apply in less than 1 minute</h3>
-                <div class="mb-3">
-                  <label for="name" class="form-label">Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="name"
-                    id="name"
-                    placeholder="enter your name"
-                    required
-                  />
-                </div>
-
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    class="form-control"
-                    id="email"
-                    aria-describedby="emailHelp"
-                    placeholder="enter your email"
-                    required
-                  />
-                  <div id="emailHelp" class="form-text">
-                    We'll never share your email with anyone else.
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="phone-number" class="form-label">Contact</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="phone-number"
-                    name="phone-number"
-                    placeholder="+91 _ _ _ _ _ _ _ _ _ _"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="resume" class="form-label">Resume</label>
-                  <input
-                    type="file"
-                    class="form-control"
-                    name="resume"
-                    id="resume"
-                    required
-                  />
-                </div>
-                <button type="submit" class="btn btn-success w-100">
-                  Submit
-                </button>
-              </form>
-              <!-- Form Ends -->
-            </div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="apply-now-modal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">
+              easily
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
+          <div class="modal-body p-5">
+            <!-- Apply Form Card Starts Here -->
+            <div class="card m-2 jobcard">
+              <div class="card-body">
+                <!-- Form -->
+                <form>
+                  <h3 class="fw-light pb-1">apply in less than 1 minute</h3>
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="name"
+                      id="name"
+                      placeholder="enter your name"
+                      required
+                    />
+                  </div>
 
-          <!-- Apply Form Card Ends Here -->
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input
+                      type="email"
+                      name="email"
+                      class="form-control"
+                      id="email"
+                      aria-describedby="emailHelp"
+                      placeholder="enter your email"
+                      required
+                    />
+                    <div id="emailHelp" class="form-text">
+                      We'll never share your email with anyone else.
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="phone-number" class="form-label">Contact</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="phone-number"
+                      name="phone-number"
+                      placeholder="+91 _ _ _ _ _ _ _ _ _ _"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="resume" class="form-label">Resume</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      name="resume"
+                      id="resume"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-success w-100">
+                    Submit
+                  </button>
+                </form>
+                <!-- Form Ends -->
+              </div>
+            </div>
+
+            <!-- Apply Form Card Ends Here -->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+

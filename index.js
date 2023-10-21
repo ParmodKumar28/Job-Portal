@@ -55,9 +55,13 @@ app.post('/login',recruitersController.postLogin);
 app.get('/logout',recruitersController.logout);
 
 // Jobs
-app.get('/jobs/job-page',jobsController.getJobPage);
-app.get('/postjob',auth,recruitersController.getPostJob);
+app.get('/jobs/job-page/:jobId',jobsController.getJobPage);
+app.get('/postjob',auth,jobsController.getPostJob);
+app.post('/postjob',auth,jobsController.postJobs)
 app.get('/applicants',auth,recruitersController.getApplicants);
+app.get('/updateJob/:jobId',jobsController.getJobUpdate);
+app.post('/updateJob/:jobId',jobsController.postJobUpdate);
+app.get('/deletejob/:jobId',jobsController.deleteJob);
 
 
 

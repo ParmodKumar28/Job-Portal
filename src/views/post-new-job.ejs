@@ -13,9 +13,9 @@
         <div class="card postJobCard">
           <div class="card-body">
             <h2 class="card-title text-center">Post a New Job</h2>
-            <form>
+            <form action="\postjob" method="post">
               <div class="form-group">
-                <select class="form-control mb-3" id="jobCategory">
+                <select class="form-control mb-3" id="jobCategory" name="category">
                 <option selected disabled>select job category</option>
                   <option value="Tech">Tech</option>
                   <option value="Non-Tech">Non-Tech</option>
@@ -24,7 +24,7 @@
               </div>
 
               <div class="form-group mb-3">
-                <select class="form-control" id="jobDesignation">
+                <select class="form-control" id="jobDesignation" name="designation">
                 <option selected disabled>select job designation</option>
                   <option value="HR">HR</option>
                   <option value="SDE">SDE</option>
@@ -41,24 +41,24 @@
 
               <div class="form-group mb-3">
                 <label for="jobLocation">Enter Job Location</label>
-                <input type="text" class="form-control" id="jobLocation">
+                <input type="text" class="form-control" id="jobLocation" name="location">
               </div>
 
               <div class="form-group mb-3">
                 <label for="companyName">COMPANY NAME</label>
-                <input type="text" class="form-control" id="companyName">
+                <input type="text" class="form-control" id="companyName" name="company">
               </div>
 
               <div class="form-group mb-3">
-                <input type="text" class="form-control" id="salary" placeholder="enter salary">
+                <input type="text" class="form-control" id="salary" placeholder="enter salary" name="salary">
               </div>
 
               <div class="form-group mb-3">
-                <input type="text" class="form-control" id="totalPositions" placeholder="total no of openings">
+                <input type="text" class="form-control" id="totalPositions" placeholder="total no of openings" name="openings">
               </div>
 
               <div class="form-group mb-3">
-                <select class="form-control" id="skillsRequired" multiple>
+                <select class="form-control" id="skillsRequired" multiple name="skills">
                     <option selected disabled>Skills Required for this Job</option>
                   <option value="React">React</option>
                   <option value="Node.js">Node.js</option>
@@ -76,7 +76,7 @@
 
               <div class="form-group mb-3">
                 <label for="applyBy">Apply By</label>
-                <input type="date" class="form-control" id="applyBy">
+                <input type="date" class="form-control" id="applyBy" name="date">
               </div>
 
               <button type="submit mb-3" class="btn btn-success btn-block w-100">Post Job</button>
@@ -87,6 +87,3 @@
       </div>
     </div>
   </div>
-  
-  </body>
-  </html>
