@@ -1,4 +1,5 @@
 export default class RecruiterModel{
+    // Constructor
     constructor(id,name,email,password)
     {
         this.id = id;
@@ -7,6 +8,7 @@ export default class RecruiterModel{
         this.password = password
     }
 
+    // Adding Recruiter
     static addRecruiter(name,email,password)
     {
         const newRecruiter = new RecruiterModel(
@@ -18,6 +20,7 @@ export default class RecruiterModel{
         recruiters.push(newRecruiter);
     }
 
+    // Checking isRegistered
     static isRegistered(email)
     {
        return recruiters.find((user)=>{
@@ -25,6 +28,7 @@ export default class RecruiterModel{
         });
     }
 
+    // Validating Recruiter
     static isValidRecruiter(email,password)
     {
         return recruiters.find((user)=>{
@@ -32,6 +36,7 @@ export default class RecruiterModel{
         });
     }
 
+    // Getting name
     static getName(email)
     {
         const recruiter = recruiters.find((user)=> user.email === email);

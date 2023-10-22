@@ -3,9 +3,12 @@ import RecruiterModel from "../models/recruiters.model.js";
 import JobsModel from "../models/jobs.model.js";
 
 export default class RecruiterController{
+    // Getting register form for the recruiter
     getRegister(req,res){
         res.render('register', {userEmail : req.session.userEmail, userName : req.session.userName,});
     }
+
+    // Posting the data of register form for recruiter on submitting
     postRegister(req,res){
         
         const isRecruiterRegistered = RecruiterModel.isRegistered(req.body.email);
@@ -22,9 +25,12 @@ export default class RecruiterController{
            
     }
 
+    // Getting Login View function here
     getLogin(req,res){
         res.render('login', {userEmail : req.session.userEmail, userName : req.session.userName,});
     }
+
+    // Posting data on login function here
     postLogin(req,res){
         const isRecruiterRegistered = RecruiterModel.isRegistered(req.body.email);
         if(!isRecruiterRegistered)
@@ -44,11 +50,9 @@ export default class RecruiterController{
         req.session.userName = RecruiterModel.getName(email);
         const allJobs = JobsModel.getAllJobs();
         res.render('jobs', {allJobs,userEmail : req.session.userEmail, userName : req.session.userName,});
-
-        // Redirecting to the jobs page after login
-        // res.redirect('/jobs');
     }
 
+    // Logout function for the recruiter is here
     logout(req,res){
         req.session.destroy((err)=>{
             if(err){
@@ -59,9 +63,5 @@ export default class RecruiterController{
                 res.redirect('/login');
             }
         });
-    }
-
-    getApplicants(req,res){
-        res.render('applicants', {userEmail : req.session.userEmail, userName : req.session.userName,});
     }
 }

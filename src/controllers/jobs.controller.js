@@ -2,15 +2,19 @@
 import JobsModel from "../models/jobs.model.js";
 
 export default class JobController{
+    // Getting jobs on the jobs page
     getJobs(req,res){
         const allJobs = JobsModel.getAllJobs();
         res.render('jobs', {allJobs, userEmail : req.session.userEmail, userName : req.session.userName,});
     }
-        getPostJob(req,res){
+    
+    // getting view for the post new job 
+    getPostJob(req,res){
         // res.render('404page');
         res.render('post-new-job', {userEmail : req.session.userEmail, userName : req.session.userName,})
     }
 
+    // Adding new job function here
     postJobs(req,res){
         const {category,designation,location,company,salary,openings,skills,date} = req.body;
         JobsModel.addJob(category,designation,location,company,salary,openings,skills,date);
@@ -20,6 +24,8 @@ export default class JobController{
 
     }
     
+
+    // Getting view for the particular job page
     getJobPage(req,res){
         // To get the job id here
         const jobId = req.params.jobId;
@@ -32,7 +38,7 @@ export default class JobController{
         } 
     }
 
-    // Function to get update for of the job
+    // Function to get update view for of the job
     getJobUpdate(req,res){
         // Job id
         const jobId = req.params.jobId;

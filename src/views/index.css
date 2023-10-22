@@ -73,6 +73,8 @@ html,body{
 
 .jobs-card{
     min-width: 320px;
+    max-height: 468px;
+    min-height: 468px;
 }
 
 .bg-color-home{

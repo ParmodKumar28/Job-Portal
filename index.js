@@ -1,4 +1,4 @@
-// Module Imported
+// Modules Imported
 import express, { urlencoded } from 'express';
 import ejs from 'ejs';
 import ejsLayouts from 'express-ejs-layouts';
@@ -9,6 +9,7 @@ import JobController from './src/controllers/jobs.controller.js';
 import {auth} from './middlewares/auth.middleware.js';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import { uploadFile } from './middlewares/file-upload.middleware.js';
 
 // Server create
 const app = express();
@@ -37,15 +38,13 @@ app.use(ejsLayouts);
 app.use(express.static('src/views'));
 app.use(express.static('public'));
 
-
 // UserController ,JobController And RecruiterController Objects
 const usersController = new UserController();
 const recruitersController = new RecruiterController();
 const jobsController = new JobController();
 
-// Router requests
+// Home Page 
 app.get('/',usersController.getHome);
-app.get('/jobs',jobsController.getJobs);
 
 // Recruiter routes
 app.get('/register',recruitersController.getRegister);
@@ -55,14 +54,18 @@ app.post('/login',recruitersController.postLogin);
 app.get('/logout',recruitersController.logout);
 
 // Jobs
+app.get('/jobs',jobsController.getJobs);
 app.get('/jobs/job-page/:jobId',jobsController.getJobPage);
 app.get('/postjob',auth,jobsController.getPostJob);
 app.post('/postjob',auth,jobsController.postJobs)
-app.get('/applicants',auth,recruitersController.getApplicants);
 app.get('/updateJob/:jobId',jobsController.getJobUpdate);
 app.post('/updateJob/:jobId',jobsController.postJobUpdate);
 app.get('/deletejob/:jobId',jobsController.deleteJob);
 
+// User
+app.post('/postApplyJob/:jobId',uploadFile.single('resume'),usersController.postApplyJob);
+app.get('/applicant-resume/:applicantId', usersController.getApplicantResume);
+app.get('/applicants/:jobId',auth,usersController.getApplicants);
 
 
 // Server Ports

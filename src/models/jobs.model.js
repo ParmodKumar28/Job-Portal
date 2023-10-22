@@ -1,5 +1,6 @@
 export default class JobsModel{
-    constructor(id,category,designation,location,company,salary,openings,skills,date,postedTime)
+    //Constructor 
+    constructor(id,category,designation,location,company,salary,openings,skills,date,postedTime,applicants)
     {
         this.id = id,
         this.category = category,
@@ -10,9 +11,11 @@ export default class JobsModel{
         this.openings = openings,
         this.skills = skills,
         this.date = date,
-        this.postedTime = postedTime
+        this.postedTime = postedTime,
+        this.applicants = applicants || [];
     }
 
+    //Function to add a new job
     static addJob(category,designation,location,company,salary,openings,skills,date)
     {
         const newJob = new JobsModel(
@@ -30,6 +33,7 @@ export default class JobsModel{
         jobs.push(newJob);
     }
 
+    //Function to get all jobs
     static getAllJobs(){
         return jobs;
     }
@@ -48,7 +52,7 @@ export default class JobsModel{
 
             jobs[index] = job;
     }
-
+    
     // Function to delete the job
     static delete(id)
     {

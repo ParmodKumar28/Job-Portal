@@ -23,29 +23,26 @@
     </div>
     <!-- Header Ends Here -->
     <!-- Card Body -->
-    <div class="card-body p-4 pb-4">
-      <h5 class="text-light fw-bold mb-4 fs-6">
+    <div class="card-body p-2 pb-2 ms-4">
+      <h5 class="text-light fw-bold mb-3 fs-6">
         <i class="fa-solid fa-location-dot"></i> <%=job.location%>
       </h5>
       <h5 class="text-light fw-bold mb-3 fs-6">
         <i class="fa-solid fa-indian-rupee-sign"></i> <%=job.salary%>
       </h5>
-<!-- Skills -->
-<div id="skills" class="d-flex flex-wrap m-1">
-  <% if (Array.isArray(job.skills)) {
-    job.skills.forEach((skill) => { %>
-      <button type="button" class="btn btn-outline-info mb-2 me-2">
-        <%= skill %>
-      </button>
-    <% });
-  } else { %>
-    <button type="button" class="btn btn-outline-info mb-2 me-2">
-      <%= job.skills %>
-    </button>
-  <% } %>
-</div>
-<!--  -->
-
+      <!-- Skills -->
+      <div id="skills" class="d-flex flex-wrap m-1">
+        <% if (Array.isArray(job.skills)) { job.skills.forEach((skill) => { %>
+        <button type="button" class="btn btn-outline-info mb-1 me-1">
+          <%= skill %>
+        </button>
+        <% }); } else { %>
+        <button type="button" class="btn btn-outline-info mb-1 me-1">
+          <%= job.skills %>
+        </button>
+        <% } %>
+      </div>
+      <!--  -->
     </div>
     <!-- Card Body Ends Here -->
     <!-- View Details -->
