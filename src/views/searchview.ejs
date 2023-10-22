@@ -5,7 +5,7 @@
   <!-- Job Card -->
   <% allJobs.forEach((job) => { %>
   <div
-    class="card border border-2 bg-dark bg-transparent bg-gradient m-3 jobs-card"
+    class="card border border-2 bg-transparent bg-gradient m-3 jobs-card"
     style="width: 320px"
   >
     <!-- Card Header -->
@@ -18,8 +18,8 @@
       </button>
       <h2 class="fw-bold fs-4 text-warning mb-3"><%= job.company %></h2>
       <span class="d-flex">
-        <h3 class="text-light fs-5 fw-bold"><%= job.category %></h3>
-        <h3 class="text-primary fs-5 fw-bold ms-2"><%= job.designation %></h3>
+        <h3 class="text-light fs-5"><%= job.category %></h3>
+        <h3 class="text-primary fs-5"><%= job.designation %></h3>
       </span>
     </div>
     <!-- Header Ends Here -->

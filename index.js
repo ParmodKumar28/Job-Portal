@@ -10,12 +10,14 @@ import {auth} from './middlewares/auth.middleware.js';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import { uploadFile } from './middlewares/file-upload.middleware.js';
+import { setLastVisit } from './middlewares/lastVisit.middleware.js';
 
 // Server create
 const app = express();
 
 // Cookies Parser
 app.use(cookieParser());
+app.use(setLastVisit);
 
 // Session Create
 app.use(session({
@@ -56,11 +58,14 @@ app.get('/logout',recruitersController.logout);
 // Jobs
 app.get('/jobs',jobsController.getJobs);
 app.get('/jobs/job-page/:jobId',jobsController.getJobPage);
-app.get('/postjob',auth,jobsController.getPostJob);
-app.post('/postjob',auth,jobsController.postJobs)
+app.get('/postjob', auth, jobsController.getPostJob);
+app.post('/postjob', auth, jobsController.postJobs);
 app.get('/updateJob/:jobId',jobsController.getJobUpdate);
 app.post('/updateJob/:jobId',jobsController.postJobUpdate);
 app.get('/deletejob/:jobId',jobsController.deleteJob);
+
+// Search functionality
+app.get('/search',jobsController.getSearchJobs);
 
 // User
 app.post('/postApplyJob/:jobId',uploadFile.single('resume'),usersController.postApplyJob);

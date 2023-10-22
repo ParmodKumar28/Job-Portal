@@ -45,19 +45,34 @@ export default class JobsModel{
     }
 
     // Function to update the job
-    static updateJob(job)
-    {
-        const index = jobs.findIndex(
-            (j)=>j.id == job.id);
+    static updateJob(jobId, updatedJob) {
+    const index = jobs.findIndex((j) => j.id == jobId); // Find the job using jobId
 
-            jobs[index] = job;
+    if (index !== -1) { // If job is found
+        updatedJob.id = jobId;
+        updatedJob.postedTime = Date.now();
+        jobs[index] = updatedJob; // Update the job
+    } else {
+        console.log('Job not found');
     }
+}
+
     
     // Function to delete the job
     static delete(id)
     {
         const job = this.getJobById(id);
         jobs.splice(job.id-1,1);
+    }
+
+    // Search Jobs
+    static searchJobs(query){
+        query = query.toLowerCase();
+        const allJobs = this.getAllJobs();
+        const filteredJobs = allJobs.filter((job)=>{
+            return job.designation.toLowerCase().includes(query);
+        });
+        return filteredJobs;
     }
 
 }

@@ -62,6 +62,7 @@ export default class RecruiterController{
             {
                 res.redirect('/login');
             }
+            res.clearCookie('lastVisit');
         });
     }
 }

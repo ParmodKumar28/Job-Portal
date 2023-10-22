@@ -2,6 +2,13 @@
 import JobsModel from "../models/jobs.model.js";
 
 export default class JobController{
+    // Search Job
+    getSearchJobs(req,res){
+        const query = req.query.query;
+        const filteredJobs = JobsModel.searchJobs(query);
+        res.render('searchview',{allJobs:filteredJobs, userEmail : req.session.userEmail, userName : req.session.userName,});
+    };
+
     // Getting jobs on the jobs page
     getJobs(req,res){
         const allJobs = JobsModel.getAllJobs();
@@ -54,12 +61,15 @@ export default class JobController{
 
     // Function to update the job
     postJobUpdate(req,res){
-        const job = req.body;
-        JobsModel.updateJob(job);
-        const allJobs = JobsModel.getAllJobs();
-        console.log(allJobs);
-        res.render('jobs',{allJobs, userEmail : req.session.userEmail, userName : req.session.userName,});
+    const jobId = req.params.jobId; // Get the job ID from the request parameters
+    const updatedJob = req.body; // Get the updated job details from the request body
+
+    // Update the job
+    JobsModel.updateJob(jobId, updatedJob); // Pass both jobId and updatedJob to your update function
+    const job = JobsModel.getJobById(jobId);
+    res.render('job-page',{job, userEmail : req.session.userEmail, userName : req.session.userName,});
     }
+
 
     // Function to delete the job
     deleteJob(req, res) {

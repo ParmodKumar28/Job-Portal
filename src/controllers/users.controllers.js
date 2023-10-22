@@ -3,6 +3,8 @@ import UserModel from '../models/users.model.js';
 // Job Module
 import JobsModel from '../models/jobs.model.js';
 import path from 'path';
+import sendMail from '../../middlewares/mailsend.middleware.js';
+
 
 export default class UserController{
     // Rendering home
@@ -22,13 +24,14 @@ export default class UserController{
     } else {
         // Checking if the applicant has already applied for this job
         const alreadyApplied = UserModel.getApplicantBymail(jobId, email);
-
+        sendMail(name,email);
         if (alreadyApplied) {
             return res.send("You have already applied for this Job");
         } else {
             UserModel.addJobApplicants(jobId, name, email, contact, resume);
+
+
             const allJobs = JobsModel.getAllJobs();
-            console.log(allJobs);
             return res.render('jobs', { allJobs, userEmail: req.session.userEmail, userName: req.session.userName });
         }
     }

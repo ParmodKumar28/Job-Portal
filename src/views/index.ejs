@@ -1,25 +1,29 @@
 <!-- Home Page -->
 <div class="container-lpage">
+  <!-- Last Visit Alert Is Here -->
+  <div class="d-flex justify-content-center pt-2">
+    <% if(locals.lastVisit) { %>
+    <div
+      class="alert alert-primary w-75 fw-bold justify-content-center"
+      role="alert"
+    >
+      You Last Visted Here On : <%= locals.lastVisit %>
+    </div>
+    <%}%>
+  </div>
+  <!-- Last Visit Alert Is Ends Here -->
+
   <div
     class="container-fluid main d-flex align-items-center justify-content-center bg-color-home flex-wrap-reverse"
   >
-    <div class="left m-2 p-2 pt-5">
+    <div class="left m-2 p-2">
       <h1 class="main-heading mb-4">A comprehensive platform for reliable</h1>
       <h2 class="white-text mb-4 h2-animation">
         job opportunities and internships.
       </h2>
       <h5 class="white-text mb-3">Get Discovered. Get Hired.</h5>
       <span>
-        <% if(locals.userEmail) { %>
-        <button
-          type="button"
-          class="btn btn-primary btn-lg m-2"
-          data-bs-toggle="modal"
-          data-bs-target="#register-modal"
-        >
-          i'm a job recruiter
-        </button>
-        <% } else { %>
+        <% if(!locals.userEmail) { %>
         <a href="/jobs"
           ><button type="button" class="btn btn-primary btn-lg">
             i'm a job seeker

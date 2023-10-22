@@ -11,8 +11,8 @@
     <!-- Job Image Ends Here -->
 
     <!-- Job Role -->
-    <h1 class="text-center mt-3 text-success fw-light">
-      <span class="text-danger"> <%= job.designation %> </span> oppertunity in
+    <h1 class="text-center mt-3 text-success fw-light fw-bold">
+      <span class="text-danger"> <%= job.designation %> </span> opportunity in
       <%=job.location %> at
       <span class="text-primary"> <%= job.company %></span>
     </h1>
@@ -21,7 +21,7 @@
     <!-- Recruiter Functions -->
     <% if(locals.userEmail) { %>
     <div class="d-flex m-2">
-      <button type="button" class="btn btn-warning ms-2">
+      <button type="button" class="btn btn-info ms-2">
         Actively Hiring <i class="fa-solid fa-chart-line i-color ms-1"></i>
       </button>
       <span class="fs-5">
@@ -37,8 +37,8 @@
 
     <div class="card-body">
       <!-- Company And Job Type -->
-      <h3 class="fw-light fs-4"><%= job.company %></h3>
-      <h4 class="fw-light fs-5">
+      <h3 class="fw-light fs-4 fw-bold"><%= job.company %></h3>
+      <h4 class="fw-light fs-5 fw-bold">
         <%= job.category %>
         <span class="text-success"> <%= job.designation %></span>
       </h4>
