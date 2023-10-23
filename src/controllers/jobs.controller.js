@@ -7,7 +7,7 @@ export default class JobController{
         const query = req.query.query;
         const filteredJobs = JobsModel.searchJobs(query);
         res.render('searchview',{allJobs:filteredJobs, userEmail : req.session.userEmail, userName : req.session.userName,});
-    };
+    }
 
     // Getting jobs on the jobs page
     getJobs(req,res){
@@ -41,7 +41,7 @@ export default class JobController{
             res.status(404).send("Job not found");
         }
         else{
-            res.render('job-page', {job,userEmail : req.session.userEmail, userName : req.session.userName,});
+            res.render('job-page', {job,userEmail : req.session.userEmail, userName : req.session.userName,notification:null});
         } 
     }
 
@@ -54,20 +54,21 @@ export default class JobController{
             res.status(404).send("Job not found");
         }
         else{
-
-            res.render('update-job', {job,userEmail : req.session.userEmail, userName : req.session.userName,});
+            
+            res.render('update-job', {job,userEmail : req.session.userEmail, userName : req.session.userName,notification:null});
         }
     }
 
     // Function to update the job
     postJobUpdate(req,res){
-    const jobId = req.params.jobId; // Get the job ID from the request parameters
-    const updatedJob = req.body; // Get the updated job details from the request body
+    const jobId = req.params.jobId; 
+    const updatedJob = req.body; 
 
     // Update the job
-    JobsModel.updateJob(jobId, updatedJob); // Pass both jobId and updatedJob to your update function
+    JobsModel.updateJob(jobId, updatedJob); 
     const job = JobsModel.getJobById(jobId);
-    res.render('job-page',{job, userEmail : req.session.userEmail, userName : req.session.userName,});
+    const notify = "Your Job is updated successfully :)"
+    res.render('job-page',{job, userEmail : req.session.userEmail, userName : req.session.userName,notification:notify});
     }
 
 

@@ -69,7 +69,7 @@ app.get('/search',jobsController.getSearchJobs);
 
 // User
 app.post('/postApplyJob/:jobId',uploadFile.single('resume'),usersController.postApplyJob);
-app.get('/applicant-resume/:applicantId', usersController.getApplicantResume);
+app.get('/applicant-resume/:applicantEmail', usersController.getApplicantResume);
 app.get('/applicants/:jobId',auth,usersController.getApplicants);
 
 

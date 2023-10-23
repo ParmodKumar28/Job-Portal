@@ -16,12 +16,12 @@ html,body{
 
 /* Home Page */
 .container-lpage{
-    background-color: #181642;
+    background-color: #A58BDE;
     min-height: 100vh;
 }
 
 .main-heading{
-    color: #FF2C90;
+    color:  #0E0D23;
     font-size: 2.5em;
     font-weight: bolder;
 }
@@ -33,7 +33,7 @@ html,body{
 
 /* Navbar Colour */
 .navbar-color{
-    background-color: #181642 !important;
+    background-color: #47336E !important;
     box-shadow: 0px 1px 10px rgb(149 157 165 / 20%);
 }
 
@@ -71,14 +71,15 @@ html,body{
     padding-right: 5rem !important;
 }
 
+/* Job Card */
 .jobs-card{
     min-width: 320px;
     max-height: 468px;
-    min-height: 430px;
+    min-height: 468px;
 }
 
 .bg-color-home{
-    background-color: #181642;
+    background-color: #A58BDE;
     /* min-height: 100vh; */
     padding-left: 5rem !important;
     padding-right: 5rem !important;

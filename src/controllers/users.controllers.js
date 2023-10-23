@@ -12,6 +12,7 @@ export default class UserController{
         res.render('index.ejs', {userEmail : req.session.userEmail, userName : req.session.userName,});
     }
 
+
     // Function to post data after applying any job by applicant here
     postApplyJob(req, res) {
     const { name, email, contact } = req.body;
@@ -23,21 +24,23 @@ export default class UserController{
         return res.status(404).send('Job is not found here');
     } else {
         // Checking if the applicant has already applied for this job
-        const alreadyApplied = UserModel.getApplicantBymail(jobId, email);
-        sendMail(name,email);
+        const alreadyApplied = UserModel.getApplicantByEmail(jobId, email);
         if (alreadyApplied) {
-            return res.send("You have already applied for this Job");
+            const notify = "You, have already applied for this job.";
+            const job = JobsModel.getJobById(jobId);
+            console.log(notify);
+            return res.render('job-page',{job, userEmail: req.session.userEmail, userName: req.session.userName, notification: notify});
         } else {
             UserModel.addJobApplicants(jobId, name, email, contact, resume);
-
-
-            const allJobs = JobsModel.getAllJobs();
-            return res.render('jobs', { allJobs, userEmail: req.session.userEmail, userName: req.session.userName });
+            // sendMail(name,email);
+            const notify = "Application submitted successfully you will get a email soon :)";
+            const job = JobsModel.getJobById(jobId);
+            return res.render('job-page', {job, userEmail: req.session.userEmail, userName: req.session.userName, notification: notify});
         }
     }
 }
 
-    // Getting the applicants for a particular job if he apllied for this job here
+    // Getting the applicants for a particular job if he applied for this job here
     getApplicants(req,res){
         const jobId = req.params.jobId;
         const job = JobsModel.getJobById(jobId);
@@ -54,15 +57,16 @@ export default class UserController{
 
     // Showing the applicant resume on clicking view Resume
     getApplicantResume(req, res) {
-    console.log(req.params.applicantId);
-    const applicantId = req.params.applicantId;
-    const applicant = UserModel.getApplicantById(applicantId);
+    console.log(req.params.applicantEmail);
+    const applicantEmail = req.params.applicantEmail;
+    const applicant = UserModel.getApplicantByEmail(applicantEmail);
+    console.log(applicant);
   
     if (!applicant) {
       res.status(404).send('Applicant not found');
     } else {
       const resumeFileName = applicant.resume;
-      const resumeFilePath = path.join(__dirname, 'public/applicants', resumeFileName);
+      const resumeFilePath = path.join(__dirname, '/applicants', resumeFileName);
       console.log(resumeFilePath);
       res.sendFile(resumeFilePath);
     }
