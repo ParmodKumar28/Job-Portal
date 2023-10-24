@@ -54,6 +54,7 @@ export default class RecruiterController{
 
     // Logout function for the recruiter is here
     logout(req,res){
+        res.clearCookie('lastVisit');
         req.session.destroy((err)=>{
             if(err){
                 console.log(err);
@@ -62,7 +63,6 @@ export default class RecruiterController{
             {
                 res.redirect('/login');
             }
-            res.clearCookie('lastVisit');
         });
     }
 }

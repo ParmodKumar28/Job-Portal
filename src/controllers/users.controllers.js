@@ -28,11 +28,10 @@ export default class UserController{
         if (alreadyApplied) {
             const notify = "You, have already applied for this job.";
             const job = JobsModel.getJobById(jobId);
-            console.log(notify);
             return res.render('job-page',{job, userEmail: req.session.userEmail, userName: req.session.userName, notification: notify});
         } else {
             UserModel.addJobApplicants(jobId, name, email, contact, resume);
-            // sendMail(name,email);
+            sendMail(name,email);
             const notify = "Application submitted successfully you will get a email soon :)";
             const job = JobsModel.getJobById(jobId);
             return res.render('job-page', {job, userEmail: req.session.userEmail, userName: req.session.userName, notification: notify});
@@ -66,7 +65,7 @@ export default class UserController{
       res.status(404).send('Applicant not found');
     } else {
       const resumeFileName = applicant.resume;
-      const resumeFilePath = path.join(__dirname, '/applicants', resumeFileName);
+      const resumeFilePath = path.join(path.resolve('../../applicants'));
       console.log(resumeFilePath);
       res.sendFile(resumeFilePath);
     }
