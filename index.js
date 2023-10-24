@@ -69,11 +69,9 @@ app.get('/search',jobsController.getSearchJobs);
 
 // User
 app.post('/postApplyJob/:jobId',uploadFile.single('resume'),usersController.postApplyJob);
-app.get('/applicant-resume/:applicantEmail', usersController.getApplicantResume);
+app.get('/applicant-resume/:applicantEmail/:jobId', usersController.getApplicantResume);
 app.get('/applicants/:jobId',auth,usersController.getApplicants);
 
 
-// Server Ports
-app.listen('5000',()=>{
-    console.log("Server is listening on localhost:5000");
-})
+// Exporting Server
+export default app;

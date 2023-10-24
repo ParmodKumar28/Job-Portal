@@ -1,6 +1,5 @@
-// User Model is imported here
+// Importing Modules
 import UserModel from '../models/users.model.js';
-// Job Module
 import JobsModel from '../models/jobs.model.js';
 import path from 'path';
 import sendMail from '../../middlewares/mailsend.middleware.js';
@@ -31,7 +30,7 @@ export default class UserController{
             return res.render('job-page',{job, userEmail: req.session.userEmail, userName: req.session.userName, notification: notify});
         } else {
             UserModel.addJobApplicants(jobId, name, email, contact, resume);
-            sendMail(name,email);
+            // sendMail(name,email);
             const notify = "Application submitted successfully you will get a email soon :)";
             const job = JobsModel.getJobById(jobId);
             return res.render('job-page', {job, userEmail: req.session.userEmail, userName: req.session.userName, notification: notify});
@@ -56,17 +55,15 @@ export default class UserController{
 
     // Showing the applicant resume on clicking view Resume
     getApplicantResume(req, res) {
-    console.log(req.params.applicantEmail);
     const applicantEmail = req.params.applicantEmail;
-    const applicant = UserModel.getApplicantByEmail(applicantEmail);
-    console.log(applicant);
+    const jobId = req.params.jobId;
+    const applicant = UserModel.getApplicantByEmail(jobId, applicantEmail);
   
     if (!applicant) {
       res.status(404).send('Applicant not found');
     } else {
       const resumeFileName = applicant.resume;
-      const resumeFilePath = path.join(path.resolve('../../applicants'));
-      console.log(resumeFilePath);
+      const resumeFilePath = path.join(path.resolve(), './public', resumeFileName);
       res.sendFile(resumeFilePath);
     }
 }

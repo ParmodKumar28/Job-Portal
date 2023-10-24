@@ -1,4 +1,4 @@
-// Recruiters Model Imported Here
+// Importing Modules
 import RecruiterModel from "../models/recruiters.model.js";
 import JobsModel from "../models/jobs.model.js";
 

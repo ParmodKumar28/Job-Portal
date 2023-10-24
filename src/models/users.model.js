@@ -14,6 +14,7 @@
         // Function for getting an applicant by their email
         static getApplicantByEmail(jobId, email) {
             const job = JobsModel.getJobById(jobId);
+            console.log(job);
             if (job && job.applicants) {
                 return job.applicants.find((applicant) => applicant.email === email);
             }
