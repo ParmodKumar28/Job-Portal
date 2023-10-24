@@ -30,7 +30,8 @@ export default class UserController{
             return res.render('job-page',{job, userEmail: req.session.userEmail, userName: req.session.userName, notification: notify});
         } else {
             UserModel.addJobApplicants(jobId, name, email, contact, resume);
-            // sendMail(name,email);
+            // Email send
+            sendMail(name,email);
             const notify = "Application submitted successfully you will get a email soon :)";
             const job = JobsModel.getJobById(jobId);
             return res.render('job-page', {job, userEmail: req.session.userEmail, userName: req.session.userName, notification: notify});
