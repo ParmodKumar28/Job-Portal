@@ -72,7 +72,7 @@ export default class JobController{
     
     // Update the job
     const job = JobsModel.getJobById(jobId);
-    JobsModel.updateJob(jobId, updatedJob, recruiterEmail); 
+    JobsModel.updateJob(jobId, updatedJob); 
     const notify = "Your Job is updated successfully :)"
     res.render('job-page',{job, userEmail : req.session.userEmail, userName : req.session.userName, notification:notify});
     }

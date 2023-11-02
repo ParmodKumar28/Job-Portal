@@ -47,7 +47,7 @@ export default class JobsModel{
     }
 
     // Function to update the job
-    static updateJob(jobId, updatedJob,recruiterEmail) {
+    static updateJob(jobId, updatedJob) {
     const index = jobs.findIndex((j) => j.id == jobId); // Find the job using jobId
     const job = this.getJobById(jobId);
     const applicants = job.applicants;
