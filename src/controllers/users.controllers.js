@@ -43,12 +43,18 @@ export default class UserController{
     getApplicants(req,res){
         const jobId = req.params.jobId;
         const job = JobsModel.getJobById(jobId);
-        if(!job)
+        const recruiterEmail = req.session.userEmail;
+        if(job.recruiterEmail!==recruiterEmail)
+        {
+            const notify = "Recruiter Who Posted This Job Is Only Allowed To Access Applicants";
+            res.render('job-page',{job, userEmail : req.session.userEmail, userName : req.session.userName, notification:notify})
+        }
+        else if(!job)
         {
             res.status(404).send("Job is not found here");
             return;
         }
-        {
+        else {
             res.render('applicants', {job ,userEmail : req.session.userEmail, userName : req.session.userName,});
         }
         

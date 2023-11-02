@@ -24,7 +24,8 @@ export default class JobController{
     // Adding new job function here
     postJobs(req,res){
         const {category,designation,location,company,salary,openings,skills,date} = req.body;
-        JobsModel.addJob(category,designation,location,company,salary,openings,skills,date);
+        const recruiterEmail = req.session.userEmail;
+        JobsModel.addJob(category,designation,location,company,salary,openings,skills,date,recruiterEmail);
         const allJobs = JobsModel.getAllJobs();
         console.log(allJobs);
         res.render('jobs',{allJobs, userEmail : req.session.userEmail, userName : req.session.userName,});
@@ -50,11 +51,16 @@ export default class JobController{
         // Job id
         const jobId = req.params.jobId;
         const job = JobsModel.getJobById(jobId);
+        const recruiterEmail = req.session.userEmail;
+        console.log(recruiterEmail);
         if(!job){
             res.status(404).send("Job not found");
         }
+        else if(job.recruiterEmail!==recruiterEmail){
+            const notify = "Recruiter Who Posted This Job Is Only Allowed To Update This Job";
+            res.render('job-page',{job, userEmail : req.session.userEmail, userName : req.session.userName, notification:notify})
+        }
         else{
-            
             res.render('update-job', {job,userEmail : req.session.userEmail, userName : req.session.userName,notification:null});
         }
     }
@@ -62,13 +68,13 @@ export default class JobController{
     // Function to update the job
     postJobUpdate(req,res){
     const jobId = req.params.jobId; 
-    const updatedJob = req.body; 
-
+    const updatedJob = req.body;
+    
     // Update the job
-    JobsModel.updateJob(jobId, updatedJob); 
     const job = JobsModel.getJobById(jobId);
+    JobsModel.updateJob(jobId, updatedJob, recruiterEmail); 
     const notify = "Your Job is updated successfully :)"
-    res.render('job-page',{job, userEmail : req.session.userEmail, userName : req.session.userName,notification:notify});
+    res.render('job-page',{job, userEmail : req.session.userEmail, userName : req.session.userName, notification:notify});
     }
 
 
@@ -80,7 +86,12 @@ export default class JobController{
     if (!job) {
             res.status(404).send("Job not found");
         } else {
-            JobsModel.delete(jobId);
+            const recruiterEmail = req.session.userEmail;
+            const error = JobsModel.delete(jobId,recruiterEmail);
+            if(error)
+            {
+                return res.render('404page.ejs',{userEmail : req.session.userEmail, userName : req.session.userName,errorMessage : error});
+            }
             var allJobs = JobsModel.getAllJobs();
             res.render('jobs', { allJobs, userEmail: req.session.userEmail, userName: req.session.userName });
         }
