@@ -29,7 +29,7 @@ export default class JobsModel{
             openings,
             skills,
             date,
-            Date.now(),
+            new Date().toUTCString(),
             recruiterEmail,
         );
         jobs.push(newJob);
