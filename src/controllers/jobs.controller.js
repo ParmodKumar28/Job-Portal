@@ -27,7 +27,6 @@ export default class JobController{
         const recruiterEmail = req.session.userEmail;
         JobsModel.addJob(category,designation,location,company,salary,openings,skills,date,recruiterEmail);
         const allJobs = JobsModel.getAllJobs();
-        console.log(allJobs);
         res.render('jobs',{allJobs, userEmail : req.session.userEmail, userName : req.session.userName,});
 
     }
@@ -52,7 +51,6 @@ export default class JobController{
         const jobId = req.params.jobId;
         const job = JobsModel.getJobById(jobId);
         const recruiterEmail = req.session.userEmail;
-        console.log(recruiterEmail);
         if(!job){
             res.status(404).send("Job not found");
         }
