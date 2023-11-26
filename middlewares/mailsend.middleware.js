@@ -5,14 +5,14 @@ async function sendMail(name, email) {
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: '',
-            pass: '',
+            user: process.env.EMAIL,
+            pass: process.env.APP,
         },
     });
 
     // Email Sending
     const mailOptions = {
-        from: 'yparmodyadav@gmail.com',
+        from: process.env.EMAIL,
         to: email,
         subject: 'Application Confirmation',
         text: `Hey ${name}, thank you for applying for the job. Your application has been received.`,

@@ -1,3 +1,4 @@
+import './dotenv.js'
 // Modules Imported
 import express, { urlencoded } from 'express';
 import ejs from 'ejs';
