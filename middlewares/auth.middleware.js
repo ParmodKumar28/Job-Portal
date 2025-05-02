@@ -6,6 +6,6 @@ export const auth = (req,res,next)=>{
     }
     else
     {
-        res.render('404page',{errorMessage : "only recruiter is allowed to access this page, login as recruiter to continue"});
+        res.render('404page',{errorMessage : "Only recruiter is allowed to access this page, login as recruiter to continue"});
     }
 }
