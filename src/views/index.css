@@ -35,7 +35,7 @@ body {
 /* Navbar Colour */
 .navbar-color {
   background-color: #47336e !important;
-  box-shadow: 0px 1px 10px rgb(149 157 165 / 20%);
+  box-shadow: 0px 1px 10px rgb(149 157 165 / 20%) !important;
 }
 
 /* Animation Of The Job Text*/
