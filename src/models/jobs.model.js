@@ -50,8 +50,8 @@ export default class JobsModel {
       openings,
       skills,
       date,
-      new Date().toUTCString(),
-      recruiterEmail
+      getDateFormatted(new Date()),
+      recruiterEmail  
     );
     jobs.push(newJob);
   }
@@ -103,6 +103,13 @@ export default class JobsModel {
     });
     return filteredJobs;
   }
+}
+
+function getDateFormatted(date){
+  const day = date.getDate().toString().padStart(2, '0'); // Pad single digit days with leading zero
+  const month = date.toLocaleString('default', { month: 'long' }); // Get full month name
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
 }
 
 const jobs = [];

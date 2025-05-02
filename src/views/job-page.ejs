@@ -1,3 +1,9 @@
+<style>
+  .navbar-color {
+    background-color: #47336e !important;
+    box-shadow: 0px 1px 10px rgb(149 157 165 / 20%);
+  }
+</style>
 <!--  -->
 <div class="container">
   <!-- Notifications -->
@@ -78,8 +84,8 @@
           job.openings %></span
         >
         <span class="text-danger"
-          ><i class="fa-solid fa-user-group"></i
-          ><a class="text-decoration-none text-danger" href="/applicants/<%=job.id%>">
+          ><i class="fa-solid fa-user-group fs-5 me-2"></i
+          ><a class="text-decoration-underline text-danger fw-bold" href="/applicants/<%=job.id%>">
             Applicants <%= job.applicants ? job.applicants.length : 0 %></a
           >
         </span>
@@ -144,7 +150,7 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body p-5">
+          <div class="modal-body p-2">
             <!-- Apply Form Card Starts Here -->
             <div class="card m-2 jobcard">
               <div class="card-body">
